@@ -5,3 +5,10 @@
   tasks:
     - name: Ping the target server
       ansible.builtin.ping:
+    - name: Check Ansible version 
+      ansible.builtin.command: ansible --version 
+      register: ansible_version_output 
+    - name: Show Ansible version 
+      ansible.builtin.debug: 
+        var: ansible_version_output.stdout_lines
+
