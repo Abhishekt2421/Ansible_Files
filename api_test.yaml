@@ -9,9 +9,11 @@
     - name: GET request
       ansible.builtin.uri:
         url: https://api.restful-api.dev/objects/7
+        return_content: true
       register: API_output
     - name : Display the value
       ansible.builtin.debug:
-        var : API_output
+        var : API_output.content
+
 
 
