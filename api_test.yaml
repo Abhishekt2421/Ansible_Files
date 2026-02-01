@@ -6,14 +6,20 @@
     - name: GET request
       ansible.builtin.uri:
         url: https://api.restful-api.dev/objects/7
-    - name: GET request
+    - name: GET request 2
       ansible.builtin.uri:
         url: https://api.restful-api.dev/objects/7
+        method: GET
+        status_code: 400
         return_content: true
       register: API_output
-    - name : Display the value
+    - name : Display the value to fail
       ansible.builtin.debug:
         var : API_output.content
+    - name : Display the value
+      ansible.builtin.debug:
+        var : API_output
+
 
 
 
