@@ -10,7 +10,7 @@
       ansible.builtin.uri:
         url: https://api.restful-api.dev/objects/7
         method: GET
-        status_code: 400
+        status_code: 200
         return_content: true
       register: API_output
     - name : Display the value to fail
@@ -19,6 +19,7 @@
     - name : Display the value
       ansible.builtin.debug:
         var : API_output
+
 
 
 
