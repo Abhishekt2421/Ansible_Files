@@ -52,4 +52,37 @@
         </table>
       </body>
       </html> 
+    
+    
+- name: Build HTML report for object 13
+  set_fact:
+    object_report_html: |
+      <html>
+      <head><title>Object Report</title></head>
+      <body>
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>Generation</th>
+            <th>Price</th>
+            <th>Capacity</th>
+          </tr>
+          <tr>
+            <td>{{ id_13 }}</td>
+            <td>{{ name_13 }}</td>
+            <td>{{ generation_13 }}</td>
+            <td>{{ price_13 }}</td>
+            <td>{{ capacity_13 }}</td>
+          </tr>
+        </table>
+      </body>
+      </html>
+
+- name: Save HTML report into AWX job artifacts
+  set_stats:
+    data:
+      object_report_html: "{{ object_report_html }}"
+
+
 
