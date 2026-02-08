@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 - name: Test connectivity to servers
   hosts: localhost   # Replace with your inventory group or hostname
@@ -24,3 +25,13 @@
 
 
 
+=======
+---
+- name: Test connectivity to servers
+  hosts: localhost   # Replace with your inventory group or hostname
+  gather_facts: false
+  tasks:
+    - name: GET request
+      ansible.builtin.uri:
+        url: https://api.restful-api.dev/objects/7
+>>>>>>> 9a54bca (Initial commit)

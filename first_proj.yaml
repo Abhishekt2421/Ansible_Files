@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 - name: Test connectivity to servers
   hosts: localhost   # Replace with your inventory group or hostname
@@ -12,3 +13,12 @@
       ansible.builtin.debug: 
         var: ansible_version_output.stdout_lines
 
+=======
+---
+- name: Test connectivity to servers
+  hosts: localhost   # Replace with your inventory group or hostname
+  gather_facts: false
+  tasks:
+    - name: Ping the target server
+      ansible.builtin.ping:
+>>>>>>> 9a54bca (Initial commit)
