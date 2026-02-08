@@ -15,5 +15,41 @@
   ansible.builtin.debug:
     var: API_output.json
 
+- name: Extract object with id 13
+  set_fact:
+    object_id_13: "{{ API_output.json | selectattr('id', 'equalto', '13') | first }}"
 
+- name: To set the values
+  set_fact:
+    id_13: "{{ object_id_13.id }}"
+    name_13: "{{ object_id_13.name }}"
+    generation_13: "{{ object_id_13.data.Generation }}"
+    price_13: "{{ object_id_13.data.Price }}"
+    capacity_13: "{{ object_id_13.data.Capacity }}"
+  
+- name: Save object details to HTML
+  copy:
+    dest: "./object_id_13.html"
+    content: |
+      <html>
+      <head><title>Object Report</title></head>
+      <body>
+        <table border="1" cellpadding="5" cellspacing="0">
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>Generation</th>
+            <th>Price</th>
+            <th>Capacity</th>
+          </tr>
+          <tr>
+            <td>{{ id_13 }}</td>
+            <td>{{ name_13 }}</td>
+            <td>{{ generation_13 }}</td>
+            <td>{{ price_13 }}</td>
+            <td>{{ capacity_13 }}</td>
+          </tr>
+        </table>
+      </body>
+      </html> 
 
