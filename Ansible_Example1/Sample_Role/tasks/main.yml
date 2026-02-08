@@ -6,9 +6,22 @@
     status_code: 200
     return_content: true
   register: API_output
-- name: Display the value to fail
+
+- name: Display the value in API_output.content
   ansible.builtin.debug:
     var: API_output.content
-- name: Display the value
+
+- name: Display the value in API_output.json
   ansible.builtin.debug:
-    var: API_output
+    var: API_output.json
+
+- name: Extract object with id 13
+  set_fact:
+    object_id_13: "{{ API_output.json | selectattr('id', 'equalto', '13') | first }}"
+
+- name: Display the object with id 13
+  ansible.builtin.debug:
+    msg: 
+      - "Object with id 13: {{ object_id_13 }}"
+      - "Name: {{ object_id_13.name }}"
+      - "Price: {{ object_id_13.data.Price }}"
