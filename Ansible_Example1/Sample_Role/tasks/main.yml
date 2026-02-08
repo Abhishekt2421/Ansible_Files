@@ -6,9 +6,9 @@
     status_code: 200
     return_content: true
   register: API_output
-- name : Display the value to fail
+- name: Display the value to fail
   ansible.builtin.debug:
-    var : API_output.content
-- name : Display the value
+    var: API_output.content
+- name: Display the value
   ansible.builtin.debug:
-    var : API_output
+    var: API_output
