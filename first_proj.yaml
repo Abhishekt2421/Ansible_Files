@@ -10,5 +10,5 @@
       register: ansible_version_output 
     - name: Show Ansible version 
       ansible.builtin.debug: 
-        var: {{ variable_vault }}
+        var: "{{ variable_vault }}"
 
