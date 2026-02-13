@@ -17,18 +17,20 @@
         return_content: true
       register: API_output
     - name : Display the value to fail
-      ansible.builtin.debug:
-        var : API_output.content
-    - name: Initialize `variable1`
+      ansible.builtin.set_fact:
+        varout : API_output.json
+    - name: Initialize variable1
       ansible.builtin.set_fact:
         variable1: []
 
-    - name: Build `variable1` list from API output
-      ansible.builtin.set_fact:
-        variable1: "{{ (variable1 | default([])) + [ { 'id': (activity.get('Id') | default(activity.get('id'))), 'title': (activity.get('Title') | default(activity.get('title'))), 'dueDate': (activity.get('DueDate') | default(activity.get('dueDate'))), 'completed': (activity.get('Completed') | default(activity.get('completed'))) } ] }}"
+    - name: Display each API activity
+      ansible.builtin.debug:
+        msg: "ID={{ item.id | default(item.Id) }} Title={{ item.title | default(item.Title) }} Due={{ item.dueDate | default(item.DueDate) }} Completed={{ item.completed | default(item.Completed) }}"
       loop: "{{ API_output.json }}"
       loop_control:
-        loop_var: activity
+        loop_var: item
+
+ 
     
 
 
