@@ -19,17 +19,16 @@
     - name : Display the value to fail
       ansible.builtin.debug:
         var : API_output.content
-    - name : Display the value
-      ansible.builtin.set_fact: >-
-        variable1: "{{ variable1+ [{ 
-        'id': var1.Id, 
-        'title':  var1.Title, 
-        'dueDate': var1.DueDate, 
-        'completed': var1.Completed
-        }] }}"
+    - name: Initialize `variable1`
+      ansible.builtin.set_fact:
+        variable1: []
+
+    - name: Build `variable1` list from API output
+      ansible.builtin.set_fact:
+        variable1: "{{ (variable1 | default([])) + [{ 'id': activity.Id, 'title': activity.Title, 'dueDate': activity.DueDate, 'completed': activity.Completed }] }}"
       loop: "{{ API_output.json }}"
       loop_control:
-        loop_var: var1
+        loop_var: activity
     
 
 
