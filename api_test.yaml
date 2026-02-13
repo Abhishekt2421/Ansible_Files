@@ -18,7 +18,7 @@
         var : API_output.content
     - name : Display the value
       ansible.builtin.debug:
-        var : API_output.json
+        var : API_output.json.dueDate
 
 
 
