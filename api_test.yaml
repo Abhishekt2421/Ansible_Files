@@ -37,7 +37,7 @@
 
     - name : Display the value to fail
       ansible.builtin.debug:
-        var: "{{ variable1 }}" 
+        var: variable1
     
 
 
