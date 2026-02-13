@@ -15,3 +15,12 @@
     - name: Show Ansible encrypted output
       ansible.builtin.debug: 
         var: "{{ var1 }}"
+
+    - name: Show Ansible encrypted output
+      vars:
+        verval: 1770893344
+      ansible.builtin.set_fact: 
+        valcon: "({{ verval }} | int | to_datetime(tz='Asia/Kolkata') | strftime('%Y-%m-%d')) "
+    - name: Show Ansible encrypted output
+      ansible.builtin.debug: 
+        var: "{{ valcon }}"
