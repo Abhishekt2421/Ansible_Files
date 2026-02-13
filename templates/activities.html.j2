@@ -18,11 +18,15 @@
       </thead>
       <tbody>
       {% for item in activities %}
+        {% set id_val = item.get('id') | default(item.get('Id')) | default(item.get('ID')) %}
+        {% set title_val = item.get('title') | default(item.get('Title')) | default(item.get('Title')) %}
+        {% set due_val = item.get('dueDate') | default(item.get('DueDate')) | default(item.get('Due')) %}
+        {% set comp_val = item.get('completed') | default(item.get('Completed')) | default(item.get('completed')) %}
         <tr>
-          <td>{{ item.id | default(item.Id) }}</td>
-          <td>{{ item.title | default(item.Title) }}</td>
-          <td>{{ (item.dueDate | default(item.DueDate)) | to_datetime | strftime('%Y-%m-%d %H:%M:%S') if (item.dueDate | default(item.DueDate)) is string else (item.dueDate | default(item.DueDate)) }}</td>
-          <td>{{ item.completed | default(item.Completed) }}</td>
+          <td>{{ id_val }}</td>
+          <td>{{ title_val }}</td>
+          <td>{{ due_val }}</td>
+          <td>{{ comp_val }}</td>
         </tr>
       {% endfor %}
       </tbody>

@@ -38,6 +38,14 @@
     - name : Display the value to fail
       ansible.builtin.debug:
         var: variable1
+
+    - name: Render activities HTML
+      ansible.builtin.template:
+        src: templates/activities.html.j2
+        dest: ./activities.html
+        mode: '0644'
+      vars:
+        activities: "{{ variable1 | default(API_output.json) }}"
     
 
 
