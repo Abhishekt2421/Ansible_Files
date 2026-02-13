@@ -11,3 +11,7 @@
     - name: Show Ansible encrypted output
       ansible.builtin.debug: 
         var: "{{ variable1 }}"
+      ignore_errors: true
+    - name: Show Ansible encrypted output
+      ansible.builtin.debug: 
+        var: "{{ var1 }}"
