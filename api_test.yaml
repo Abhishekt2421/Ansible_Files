@@ -46,8 +46,36 @@
         mode: '0644'
       vars:
         activities: "{{ variable1 | default(API_output.json) }}"
-    
 
+    - name: Build HTML report for object 13
+      ansible.builtin.set_fact:
+        object_report_html: |
+          <html>
+            <head><title>Activities Report</title></head>
+            <body>
+              <table border="1" cellpadding="5" cellspacing="0">
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Due Date</th>
+                  <th>Completed</th>
+                </tr>
+                {% for activity in variable1 %}
+                <tr>
+                  <td>{{ activity.ID }}</td>
+                  <td>{{ activity.Title }}</td>
+                  <td>{{ activity.Due }}</td>
+                  <td>{{ activity.Completed }}</td>
+                </tr>
+                {% endfor %}
+              </table>
+            </body>
+          </html>
+
+    - name: Save HTML report into AWX job artifacts
+      set_stats:
+        data:
+          object_report_html: "{{ object_report_html }}"
 
 
 
