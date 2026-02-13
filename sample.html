@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        thead {
+            background: #f8f9fa;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            font-size: 1em;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+            color: #555;
+        }
+        
+        tbody tr:hover {
+            background: #f8f9fa;
+            transition: background 0.3s ease;
+        }
+        
+        tbody tr:nth-child(even) {
+            background: #fafbfc;
+        }
+        
+        .status-true {
+            color: #28a745;
+            font-weight: 600;
+        }
+        
+        .status-false {
+            color: #dc3545;
+            font-weight: 600;
+        }
+        
+        .date-cell {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            border-top: 1px solid #e9ecef;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 Activities Report</h1>
+            <p>Complete list of all activities with status tracking</p>
+        </div>
+        
+        <div class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td>1</td>
+                        <td>Activity 1</td>
+                        <td class="date-cell">2026-02-13T14:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Activity 2</td>
+                        <td class="date-cell">2026-02-13T15:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Activity 3</td>
+                        <td class="date-cell">2026-02-13T16:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Activity 4</td>
+                        <td class="date-cell">2026-02-13T17:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Activity 5</td>
+                        <td class="date-cell">2026-02-13T18:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Activity 6</td>
+                        <td class="date-cell">2026-02-13T19:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Activity 7</td>
+                        <td class="date-cell">2026-02-13T20:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Activity 8</td>
+                        <td class="date-cell">2026-02-13T21:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Activity 9</td>
+                        <td class="date-cell">2026-02-13T22:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Activity 10</td>
+                        <td class="date-cell">2026-02-13T23:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Activity 11</td>
+                        <td class="date-cell">2026-02-14T00:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Activity 12</td>
+                        <td class="date-cell">2026-02-14T01:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Activity 13</td>
+                        <td class="date-cell">2026-02-14T02:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Activity 14</td>
+                        <td class="date-cell">2026-02-14T03:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Activity 15</td>
+                        <td class="date-cell">2026-02-14T04:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Activity 16</td>
+                        <td class="date-cell">2026-02-14T05:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>Activity 17</td>
+                        <td class="date-cell">2026-02-14T06:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>Activity 18</td>
+                        <td class="date-cell">2026-02-14T07:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>Activity 19</td>
+                        <td class="date-cell">2026-02-14T08:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>Activity 20</td>
+                        <td class="date-cell">2026-02-14T09:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td>Activity 21</td>
+                        <td class="date-cell">2026-02-14T10:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td>Activity 22</td>
+                        <td class="date-cell">2026-02-14T11:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td>Activity 23</td>
+                        <td class="date-cell">2026-02-14T12:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>24</td>
+                        <td>Activity 24</td>
+                        <td class="date-cell">2026-02-14T13:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td>Activity 25</td>
+                        <td class="date-cell">2026-02-14T14:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>26</td>
+                        <td>Activity 26</td>
+                        <td class="date-cell">2026-02-14T15:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>27</td>
+                        <td>Activity 27</td>
+                        <td class="date-cell">2026-02-14T16:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>28</td>
+                        <td>Activity 28</td>
+                        <td class="date-cell">2026-02-14T17:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                    <tr>
+                        <td>29</td>
+                        <td>Activity 29</td>
+                        <td class="date-cell">2026-02-14T18:31:06</td>
+                        <td><span class="status-false">False</span></td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td>Activity 30</td>
+                        <td class="date-cell">2026-02-14T19:31:06</td>
+                        <td><span class="status-true">True</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <p>Generated: February 13, 2026 | Total Activities: 30</p>
+        </div>
+    </div>
+</body>
+</html>
