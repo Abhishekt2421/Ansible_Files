@@ -4,34 +4,40 @@
   gather_facts: false
   collections:
     - community.general
-    
-  tasks: 
-    - name: GET request single multiple or none
+
+  tasks:
+    - name: GET request
       ansible.builtin.uri:
-        url: https://fakerestapi.azurewebsites.net/api/v1/Activities/2
+        url: https://fakerestapi.azurewebsites.net/api/v1/Activities
+    - name: GET request 2
+      ansible.builtin.uri:
+        url: https://fakerestapi.azurewebsites.net/api/v1/Activities/
         method: GET
         status_code: 200
         return_content: true
       register: API_output
-
-    - name: Normalize response into a list
+    - name : Display the value to fail
       ansible.builtin.set_fact:
-        activities_list: >-
-          {{
-            (API_output.json | default([]))
-            if (API_output.json | type_debug) == 'list'
-            else (
-              (API_output.json | type_debug) == 'dict'
-              | ternary([API_output.json], [])
-            )
-          }}
+        varout : API_output.json
+    # - name: Initialize variable1
+    #   ansible.builtin.set_fact:
+    #     variable1: []
 
-    - name: Display each activity
+    - name: Display each API activity
       ansible.builtin.debug:
         msg: "ID={{ item.id | default(item.Id) }} Title={{ item.title | default(item.Title) }} Due={{ item.dueDate | default(item.DueDate) }} Completed={{ item.completed | default(item.Completed) }}"
-      loop: "{{ activities_list }}"
+      loop: "{{ API_output.json }}"
       loop_control:
         loop_var: item
+
+    - name: Append each activity to variable1
+      ansible.builtin.set_fact:
+        variable1: "{{ (variable1 | default([])) + [ { 'ID': (item.id | default(item.Id)), 'Title': (item.title | default(item.Title)), 'Due': (item.dueDate | default(item.DueDate)), 'Completed': (item.completed | default(item.Completed)) } ] }}"
+      loop: "{{ API_output.json | default([]) }}"
+
+    - name : Display the value to fail
+      ansible.builtin.debug:
+        var: variable1
 
     - name: Render activities HTML
       ansible.builtin.template:
@@ -39,9 +45,9 @@
         dest: ./activities.html
         mode: '0644'
       vars:
-        activities: "{{ activities_list }}"
+        activities: "{{ variable1 | default(API_output.json) }}"
 
-    - name: Build HTML report
+    - name: Build HTML report for object 13
       ansible.builtin.set_fact:
         object_report_html: |
           <html>
@@ -54,12 +60,12 @@
                   <th>Due Date</th>
                   <th>Completed</th>
                 </tr>
-                {% for activity in activities_list %}
+                {% for activity in variable1 %}
                 <tr>
-                  <td>{{ activity.id | default(activity.Id) }}</td>
-                  <td>{{ activity.title | default(activity.Title) }}</td>
-                  <td>{{ activity.dueDate | default(activity.DueDate) }}</td>
-                  <td>{{ activity.completed | default(activity.Completed) }}</td>
+                  <td>{{ activity.ID }}</td>
+                  <td>{{ activity.Title }}</td>
+                  <td>{{ activity.Due }}</td>
+                  <td>{{ activity.Completed }}</td>
                 </tr>
                 {% endfor %}
               </table>
@@ -67,6 +73,11 @@
           </html>
 
     - name: Save HTML report into AWX job artifacts
-      ansible.builtin.set_stats:
+      set_stats:
         data:
           object_report_html: "{{ object_report_html }}"
+
+
+
+
+
