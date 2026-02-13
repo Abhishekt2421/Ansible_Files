@@ -11,7 +11,7 @@
         url: https://fakerestapi.azurewebsites.net/api/v1/Activities
     - name: GET request 2
       ansible.builtin.uri:
-        url: https://fakerestapi.azurewebsites.net/api/v1/Activities/2
+        url: https://fakerestapi.azurewebsites.net/api/v1/Activities/
         method: GET
         status_code: 200
         return_content: true
@@ -20,11 +20,17 @@
       ansible.builtin.debug:
         var : API_output.content
     - name : Display the value
-      ansible.builtin.debug:
-        var : API_output.json.dueDate
-    - name: Format due date
-      ansible.builtin.debug:
-        msg: "{{ API_output.json.dueDate | ansible.community.to_datetime | strftime('%a %d %b %Y %H:%M:%S GMT') }}"
+      ansible.builtin.set_fact: >-
+        variable1: "{{ variable1+ [{ 
+        'id': {{var1.Id}}, 
+        'title': '{{ var1.Title }}', 
+        'dueDate': '{{ var1.DueDate }}', 
+        'completed': {{ var1.Completed }}
+        }] }}"
+      loop: "{{ API_output.json }}"
+      loop_control:
+        loop_var: var1
+    
 
 
 
