@@ -19,6 +19,10 @@
     - name : Display the value
       ansible.builtin.debug:
         var : API_output.json.dueDate
+    - name: Format due date
+      ansible.builtin.debug:
+        msg: "{{ API_output.json.dueDate | to_datetime | strftime('%a %d %b %Y %H:%M:%S GMT') }}"
+
 
 
 
