@@ -36,8 +36,8 @@
       loop: "{{ API_output.json | default([]) }}"
 
     - name : Display the value to fail
-        ansible.builtin.debug:
-          var: "{{ variable1 }}" 
+      ansible.builtin.debug:
+        var: "{{ variable1 }}" 
     
 
 
