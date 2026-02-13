@@ -35,7 +35,9 @@
         variable1: "{{ (variable1 | default([])) + [ { 'ID': (item.id | default(item.Id)), 'Title': (item.title | default(item.Title)), 'Due': (item.dueDate | default(item.DueDate)), 'Completed': (item.completed | default(item.Completed)) } ] }}"
       loop: "{{ API_output.json | default([]) }}"
 
- 
+    - name : Display the value to fail
+        ansible.builtin.debug:
+          var: "{{ variable1 }}" 
     
 
 
