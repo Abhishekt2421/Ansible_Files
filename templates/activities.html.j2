@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Activities</title>
+    <style>
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+      th { background: #f2f2f2; }
+    </style>
+  </head>
+  <body>
+    <h1>Activities</h1>
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Title</th><th>Due</th><th>Completed</th></tr>
+      </thead>
+      <tbody>
+      {% for item in activities %}
+        <tr>
+          <td>{{ item.id | default(item.Id) }}</td>
+          <td>{{ item.title | default(item.Title) }}</td>
+          <td>{{ (item.dueDate | default(item.DueDate)) | to_datetime | strftime('%Y-%m-%d %H:%M:%S') if (item.dueDate | default(item.DueDate)) is string else (item.dueDate | default(item.DueDate)) }}</td>
+          <td>{{ item.completed | default(item.Completed) }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
