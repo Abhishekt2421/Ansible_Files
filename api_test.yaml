@@ -2,10 +2,16 @@
 - name: Test connectivity to servers
   hosts: localhost   # Replace with your inventory group or hostname
   gather_facts: false
+  vars:
+    api_url: 
+    - "https://api.restful-api.dev/objects/7"
+    - "https://api.restful-api.dev/objects/8"
+    - "https://api.restful-api.dev/objects/9"
+    - "https://api.restful-api.dev/objects/10"
   tasks:
     - name: GET request
       ansible.builtin.uri:
-        url: https://api.restful-api.dev/objects/7
+        url: "{{ api_url }}"
     - name: GET request 2
       ansible.builtin.uri:
         url: https://api.restful-api.dev/objects/7
