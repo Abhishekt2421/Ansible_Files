@@ -22,10 +22,10 @@
     - name : Display the value
       ansible.builtin.set_fact: >-
         variable1: "{{ variable1+ [{ 
-        'id': {{var1.Id}}, 
-        'title': '{{ var1.Title }}', 
-        'dueDate': '{{ var1.DueDate }}', 
-        'completed': {{ var1.Completed }}
+        'id': var1.Id, 
+        'title':  var1.Title, 
+        'dueDate': var1.DueDate, 
+        'completed': var1.Completed
         }] }}"
       loop: "{{ API_output.json }}"
       loop_control:
