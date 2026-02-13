@@ -1,4 +1,4 @@
-- name: GET request (single, multiple, or none)
+- name: GET request single multiple or none
   ansible.builtin.uri:
     url: https://fakerestapi.azurewebsites.net/api/v1/Activities/2
     method: GET
