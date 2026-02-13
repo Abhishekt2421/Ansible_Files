@@ -19,8 +19,8 @@
     - name: Show Ansible encrypted output
       vars:
         verval: 1770893344
-      ansible.builtin.set_fact: 
-        valcon: "({{ verval }} | int | to_datetime | strftime('%Y-%m-%d')) "
+      ansible.builtin.set_fact:
+        valcon: "{{ verval | int | to_datetime('%s') | strftime('%Y-%m-%d') }}"
     - name: Show Ansible encrypted output
       ansible.builtin.debug: 
         var: "{{ valcon }}"
