@@ -25,7 +25,7 @@
 
     - name: Build `variable1` list from API output
       ansible.builtin.set_fact:
-        variable1: "{{ (variable1 | default([])) + [{ 'id': activity.Id, 'title': activity.Title, 'dueDate': activity.DueDate, 'completed': activity.Completed }] }}"
+        variable1: "{{ (variable1 | default([])) + [ { 'id': (activity.get('Id') | default(activity.get('id'))), 'title': (activity.get('Title') | default(activity.get('title'))), 'dueDate': (activity.get('DueDate') | default(activity.get('dueDate'))), 'completed': (activity.get('Completed') | default(activity.get('completed'))) } ] }}"
       loop: "{{ API_output.json }}"
       loop_control:
         loop_var: activity
