@@ -1,0 +1,26 @@
+---
+- name: Test connectivity to servers
+  hosts: localhost   # Replace with your inventory group or hostname
+  gather_facts: false
+  tasks:
+    - name: GET request
+      ansible.builtin.uri:
+        url: https://fakerestapi.azurewebsites.net/api/v1/Activities
+    - name: GET request 2
+      ansible.builtin.uri:
+        url: https://fakerestapi.azurewebsites.net/api/v1/Activities/2
+        method: GET
+        status_code: 200
+        return_content: true
+      register: API_output
+    - name : Display the value to fail
+      ansible.builtin.debug:
+        var : API_output.content
+    - name : Display the value
+      ansible.builtin.debug:
+        var : API_output.json
+
+
+
+
+
