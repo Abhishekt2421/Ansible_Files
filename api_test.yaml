@@ -23,10 +23,21 @@
     #   ansible.builtin.set_fact:
     #     variable1: []
 
+    - name: Normalize response into a list 
+      ansible.builtin.set_fact: 
+        activities_list: >- 
+          {{ 
+           (API_output.json | default([])) 
+           if (API_output.json | type_debug) == 'list' 
+           else ( 
+           (API_output.json | type_debug) == 'dict' | ternary([API_output.json], []) 
+          ) 
+          }}
+
     - name: Display each API activity
       ansible.builtin.debug:
         msg: "ID={{ item.id | default(item.Id) }} Title={{ item.title | default(item.Title) }} Due={{ item.dueDate | default(item.DueDate) }} Completed={{ item.completed | default(item.Completed) }}"
-      loop: "{{ API_output.json }}"
+      loop: "{{ activities_list }}"
       loop_control:
         loop_var: item
 
@@ -44,8 +55,9 @@
         src: templates/activities.html.j2
         dest: ./activities.html
         mode: '0644'
-      vars:
-        activities: "{{ variable1 | default(API_output.json) }}"
+      vars: 
+        activities: "{{ activities_list }}"
+
 
     - name: Build HTML report for object 13
       ansible.builtin.set_fact:
@@ -60,7 +72,7 @@
                   <th>Due Date</th>
                   <th>Completed</th>
                 </tr>
-                {% for activity in variable1 %}
+                {% for activity in activities_list %}
                 <tr>
                   <td>{{ activity.ID }}</td>
                   <td>{{ activity.Title }}</td>
