@@ -3,8 +3,7 @@
   hosts: localhost   # Replace with your inventory group or hostname
   gather_facts: false
   collections:
-    - name: community.general
-      version: ">=8.0.0"
+    - community.general
 
   tasks:
     - name: GET request
