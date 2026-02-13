@@ -23,16 +23,9 @@
     #   ansible.builtin.set_fact:
     #     variable1: []
 
-    - name: Normalize response into a list 
-      ansible.builtin.set_fact: 
-        activities_list: >- 
-          {{ 
-           (API_output.json | default([])) 
-           if (API_output.json | type_debug) == 'list' 
-           else ( 
-           (API_output.json | type_debug) == 'dict' | ternary([API_output.json], []) 
-          ) 
-          }}
+    - name: Normalize response into a list
+      ansible.builtin.set_fact:
+        activities_list: "{{ API_output.json if (API_output.json is sequence) else ( [ API_output.json ] if (API_output.json is mapping) else [] ) }}"
 
     - name: Display each API activity
       ansible.builtin.debug:
@@ -44,7 +37,7 @@
     - name: Append each activity to variable1
       ansible.builtin.set_fact:
         variable1: "{{ (variable1 | default([])) + [ { 'ID': (item.id | default(item.Id)), 'Title': (item.title | default(item.Title)), 'Due': (item.dueDate | default(item.DueDate)), 'Completed': (item.completed | default(item.Completed)) } ] }}"
-      loop: "{{ API_output.json | default([]) }}"
+      loop: "{{ activities_list | default([]) }}"
 
     - name : Display the value to fail
       ansible.builtin.debug:
