@@ -1,7 +1,0 @@
----
-- name: Test connectivity to servers
-  hosts: localhost   # Replace with your inventory group or hostname
-  gather_facts: false
-  tasks:
-    - name: Ping the target server
-      ansible.builtin.ping:
